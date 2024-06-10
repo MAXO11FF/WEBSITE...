@@ -1,0 +1,198 @@
+.text-bar.hidden {
+    right: -300px; /* Move the text bar offscreen */
+}
+/* Existing CSS styles */
+
+.discord-profile img {
+    width: 100px; /* Adjust size as needed */
+    height: 100px; /* Adjust size as needed */
+    border-radius: 50%; /* Make it round */
+    margin-right: 10px; /* Add some space */
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.5); /* Add a subtle shadow */
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    overflow: hidden;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: black;
+}
+
+.background-video {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 1; /* Video behind everything */
+}
+
+.intro-container {
+    position: relative;
+    z-index: 3; /* Ensure intro content is above the video */
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    padding: 20px;
+    max-width: 400px;
+    width: calc(100% - 40px);
+    backdrop-filter: blur(10px);
+    animation: fadeIn 2s ease-in-out;
+    margin: 20px;
+}
+
+.profile-pic-container {
+    position: relative;
+    width: 150px;
+    height: 150px;
+    margin: 0 auto 20px auto;
+    border-radius: 50%;
+    overflow: hidden;
+    animation: rgbBorder 2s infinite;
+}
+
+.profile-pic-container video,
+.profile-pic-container img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.cat-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transform: scale(0.5) translate(25%, -25%);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.intro-container:hover .cat-image {
+    opacity: 1;
+    transform: scale(1) translate(0%, 0%);
+}
+
+.intro-container h1 {
+    font-family: 'Georgia', serif;
+    font-size: 2em;
+    margin: 0;
+    color: #fff;
+    display: inline-block;
+    border-right: 2px solid rgba(255, 255, 255, 0.75);
+    white-space: nowrap;
+    overflow: hidden;
+    animation: typing 3.5s steps(30, end), blink-caret 0.75s step-end infinite;
+    text-shadow: 0 0 5px rgba(255, 255, 255, 0.75), 0 0 10px rgba(255, 255, 255, 0.5), 0 0 15px rgba(255, 255, 255, 0.25);
+}
+
+.intro-container p {
+    font-family: 'Poppins', sans-serif;
+    color: #fff;
+    font-size: 1em;
+    margin-top: 10px;
+    text-shadow: 0 0 5px rgba(255, 255, 255, 0.75), 0 0 10px rgba(255, 255, 255, 0.5), 0 0 15px rgba(255, 255, 255, 0.25);
+}
+
+.container {
+    margin-top: 20px;
+}
+
+button {
+    padding: 15px 30px;
+    font-size: 18px;
+    font-family: 'Poppins', sans-serif;
+    cursor: pointer;
+    background: linear-gradient(45deg, #6a11cb, #2575fc);
+    border: none;
+    color: white;
+    border-radius: 50px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    margin: 4px 2px;
+    transition: all 0.4s ease;
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.5), 0 0 25px rgba(255, 255, 255, 0.3), 0 0 35px rgba(255, 255, 255, 0.1);
+}
+
+button:hover {
+    background: linear-gradient(45deg, #2575fc, #6a11cb);
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.7), 0 0 30px rgba(255, 255, 255, 0.5), 0 0 40px rgba(255, 255, 255, 0.3);
+    transform: scale(1.1);
+}
+
+#audioPlayer {
+    display: none;
+}
+
+.text-bar {
+    position: fixed;
+    top: 50%;
+    right: -300px; /* Hide offscreen initially */
+    transform: translateY(-50%);
+    width: 300px;
+    background: rgba(255, 255, 255, 0.2);
+    color: #fff;
+    padding: 15px;
+    border-radius: 10px 0 0 10px;
+    text-align: center;
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
+    transition: right 0.5s ease-in-out;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    z-index: 2; /* Text bar above the video but below intro container */
+    animation: slideIn 4s forwards;
+}
+
+@keyframes slideIn {
+    from {
+        right: -300px;
+    }
+    to {
+        right: 0;
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes rgbBorder {
+    0% {
+        box-shadow: 0 0 5px #ff0000, 0 0 10px #ff0000, 0 0 15px #ff0000, 0 0 20px #ff0000;
+    }
+    25% {
+        box-shadow: 0 0 5px #00ff00, 0 0 10px #00ff00, 0 0 15px #00ff00, 0 0 20px #00ff00;
+    }
+    50% {
+        box-shadow: 0 0 5px #0000ff, 0 0 10px #0000ff, 0 0 15px #0000ff, 0 0 20px #0000ff;
+    }
+    75% {
+        box-shadow: 0 0 5px #ffff00, 0 0 10px #ffff00, 0 0 15px #ffff00, 0 0 20px #ffff00;
+    }
+    100% {
+        box-shadow: 0 0 5px #ff0000, 0 0 10px #ff0000, 0 0 15px #ff0000, 0 0 20px #ff0000;
+    }
+}
+
+@keyframes typing {
+    from { width: 0; }
+    to { width: 100%; }
+}
+
+@keyframes blink-caret {
+    from, to { border-color: transparent; }
+    50% { border-color: white; }
+}
